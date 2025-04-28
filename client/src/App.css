@@ -1,38 +1,122 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.chat-wrapper {
+  width: 80%;
+  height: 85%;
+  margin: auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  border: 1px solid #e0e0e0;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+
+.chat-header {
+  background: linear-gradient(135deg, #006aff, #00c6ff);
   color: white;
+  padding: 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-image: url('https://i.pravatar.cc/40?img=5');
+  background-size: cover;
+  background-position: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.agent-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.status {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.chat-box {
+  flex-grow: 1;
+  background-color: #f7f9fc;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.chat-message {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 18px;
+  line-height: 1.4;
+  font-size: 14px;
+}
+
+.chat-message.bot {
+  background-color: #ffffff;
+  align-self: flex-start;
+  border: 1px solid #e0e0e0;
+}
+
+.chat-message.user {
+  background-color: #006aff;
+  color: white;
+  align-self: flex-end;
+}
+
+.chat-input {
+  display: flex;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background: #fff;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  outline: none;
+  font-size: 14px;
+}
+
+.chat-input button {
+  background: #006aff;
+  border: none;
+  color: white;
+  margin-left: 8px;
+  padding: 10px 14px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.app-container {
+  display: flex;
+  height: 100vh;
+  
+}
+
+.new-chat-btn {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #006aff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
