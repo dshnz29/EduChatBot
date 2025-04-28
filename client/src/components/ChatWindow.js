@@ -25,9 +25,9 @@ function ChatWindow({ session, updateSession }) {
   return (
     <div className="chat-wrapper">
       <div className="chat-header">
-        <div className="avatar"></div>
+        <div className="avatar1"></div>
         <div>
-          <div className="agent-name">Jessica Smith</div>
+          <div className="agent-name">EduGenie</div>
           <div className="status">We are online!</div>
         </div>
       </div>
