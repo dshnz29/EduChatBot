@@ -1,42 +1,52 @@
+/* Dark Theme for Chat History */
 .chat-history {
-    width: 220px;
-    background-color: #f5f6f7;
-    border-right: 1px solid #ddd;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .history-header {
-    font-weight: bold;
-    margin-bottom: 10px;
-    padding: 8px 12px;
-    background-color: #e0e7ff;
-    border-radius: 8px;
-  }
-  
-  .history-item {
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 6px;
-    margin-bottom: 6px;
-  }
-  
-  .history-item.active {
-    background-color: #006aff;
-    color: white;
-  }
-  
-  .chat-message.bot.clickable {
-    cursor: pointer;
-    background-color: #e0f7fa;
-    border-radius: 12px;
-    padding: 8px 12px;
-    margin: 5px 0;
-    transition: background-color 0.2s;
-  }
-  
-  .chat-message.bot.clickable:hover {
-    background-color: #b2ebf2;
-  }
-  
+  width: 220px;
+  background-color: #2c2f38; /* Dark background */
+  border-right: 1px solid #444; /* Lighter border for contrast */
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* History Header */
+.history-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background-color: #000000; /* Slightly lighter dark color */
+  color: #ffffff; /* White text */
+  border-radius: 8px;
+}
+
+/* History Item */
+.history-item {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  color: #ffffff; /* White text */
+  background-color: #3a434e; /* Dark background for items */
+}
+
+/* Active History Item */
+.history-item.active {
+  background-color: #006aff; /* Bright blue for active item */
+  color: white;
+}
+
+/* Chatbot Message - Clickable */
+.chat-message.bot.clickable {
+  cursor: pointer;
+  background-color: #37474f; /* Dark background for bot message */
+  border-radius: 12px;
+  padding: 8px 12px;
+  margin: 5px 0;
+  color: #ffffff; /* White text */
+  transition: background-color 0.2s;
+}
+
+/* Hover effect for Chatbot message */
+.chat-message.bot.clickable:hover {
+  background-color: #546e7a; /* Lighter shade of dark gray for hover */
+}
+

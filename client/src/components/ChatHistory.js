@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './ChatHistory.css';
 
 function ChatHistory({ sessions, onSelect, activeSession }) {
+  useEffect(() => {
+    if (sessions.length > 0) {
+      onSelect(0); // Select the first session by default if there are sessions
+    }
+  }, [sessions, onSelect]); // Added onSelect to the dependency array
+
   return (
     <div className="chat-history">
       <div className="history-header">My Chats</div>

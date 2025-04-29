@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './ChatHistory.css';
+import './ChatWindow.css';
 
 const BOT_WELCOME_MESSAGES = [
   { 
@@ -32,9 +32,8 @@ function ChatWindow({ session, updateSession }) {
 
   // Initialize conversation with welcome messages
   useEffect(() => {
-    // Check if this is a new session with only the initial bot message
     if (session.messages.length === 1 && session.messages[0].sender === 'bot') {
-      // Create a new session object with the welcome messages
+      // Add BOT_WELCOME_MESSAGES when starting a new session
       const updatedSession = {
         ...session,
         messages: [...session.messages, ...BOT_WELCOME_MESSAGES],
@@ -48,13 +47,11 @@ function ChatWindow({ session, updateSession }) {
     const textToSend = messageText || input;
     if (!textToSend.trim()) return;
 
-    // Update sector if provided
     const newSector = sector || currentSector;
     if (sector) {
       setCurrentSector(sector);
     }
 
-    // Create user message
     const userMessage = { 
       text: textToSend, 
       sender: 'user',
@@ -72,14 +69,12 @@ function ChatWindow({ session, updateSession }) {
         session_id: session.id || Date.now() // Fallback to timestamp if no ID
       });
 
-      // Create bot response
       const botMessage = { 
         text: res.data.reply, 
         sender: 'bot',
         sector: res.data.sector || newSector
       };
 
-      // Update sector if changed in response
       if (res.data.sector) {
         setCurrentSector(res.data.sector);
       }
@@ -119,9 +114,7 @@ function ChatWindow({ session, updateSession }) {
         {session.messages.map((msg, idx) => (
           <div
             key={idx}
-            className={`chat-message ${msg.sender} ${
-              msg.sender === 'bot' && msg.sector ? 'clickable' : ''
-            }`}
+            className={`chat-message ${msg.sender} ${msg.sender === 'bot' && msg.sector ? 'clickable' : ''}`}
             onClick={() => handleBotMessageClick(msg)}
           >
             {msg.text}
