@@ -1,0 +1,37 @@
+/* ChatWindow.css */
+.chat-window {
+    width: 400px;
+    height: 500px;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: #f9f9f9;
+  }
+  
+  .input-section {
+    display: flex;
+    margin-top: 10px;
+  }
+  
+  .input-section input {
+    flex-grow: 1;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+  }
+  
+  .input-section button {
+    padding: 10px;
+    margin-left: 10px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .input-section button:hover {
+    background-color: #45a049;
+  }
+  

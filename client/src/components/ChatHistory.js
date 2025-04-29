@@ -1,21 +1,17 @@
+// ChatHistory.js
 import React from 'react';
-import './ChatHistory.css';
+import './ChatHistory.css'; // Import the styles for the chat history
 
-function ChatHistory({ sessions, onSelect, activeSession }) {
+const ChatHistory = ({ messages }) => {
   return (
     <div className="chat-history">
-      <div className="history-header">My Chats</div>
-      {sessions.map((session, index) => (
-        <div
-          key={index}
-          className={`history-item ${activeSession === index ? 'active' : ''}`}
-          onClick={() => onSelect(index)}
-        >
-          Chat {index + 1}
+      {messages.map((message, index) => (
+        <div key={index} className={message.sender === 'user' ? 'user-message' : 'bot-message'}>
+          {message.text}
         </div>
       ))}
     </div>
   );
-}
+};
 
 export default ChatHistory;

@@ -1,42 +1,26 @@
+/* ChatHistory.css */
 .chat-history {
-    width: 220px;
-    background-color: #f5f6f7;
-    border-right: 1px solid #ddd;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .history-header {
-    font-weight: bold;
-    margin-bottom: 10px;
-    padding: 8px 12px;
-    background-color: #e0e7ff;
-    border-radius: 8px;
-  }
-  
-  .history-item {
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 6px;
-    margin-bottom: 6px;
-  }
-  
-  .history-item.active {
-    background-color: #006aff;
-    color: white;
-  }
-  
-  .chat-message.bot.clickable {
-    cursor: pointer;
-    background-color: #e0f7fa;
-    border-radius: 12px;
-    padding: 8px 12px;
-    margin: 5px 0;
-    transition: background-color 0.2s;
-  }
-  
-  .chat-message.bot.clickable:hover {
-    background-color: #b2ebf2;
-  }
-  
+  flex-grow: 1;
+  overflow-y: scroll;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-message {
+  align-self: flex-end;
+  background-color: #e1ffc7;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  max-width: 70%;
+}
+
+.bot-message {
+  align-self: flex-start;
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  max-width: 70%;
+}
