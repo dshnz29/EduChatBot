@@ -5,7 +5,10 @@ import './App.css';
 
 function App() {
   const [sessions, setSessions] = useState([
-    { messages: [{ text: 'Hi 👋 How can I help you?', sender: 'bot' }] },
+    { 
+      id: Date.now(),
+      messages: [{ text: 'Hi 👋 How can I help you?', sender: 'bot' }] 
+    },
   ]);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -16,9 +19,13 @@ function App() {
   };
 
   const createNewSession = () => {
-    setSessions([...sessions, { messages: [{ text: 'Hi 👋 How can I help you?', sender: 'bot' }] }]);
+    setSessions([...sessions, { 
+      id: Date.now(),
+      messages: [{ text: 'Hi 👋 How can I help you?', sender: 'bot' }] 
+    }]);
     setActiveIndex(sessions.length);
   };
+
 
   return (
     <div className="app-container">

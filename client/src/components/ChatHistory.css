@@ -27,3 +27,16 @@
     color: white;
   }
   
+  .chat-message.bot.clickable {
+    cursor: pointer;
+    background-color: #e0f7fa;
+    border-radius: 12px;
+    padding: 8px 12px;
+    margin: 5px 0;
+    transition: background-color 0.2s;
+  }
+  
+  .chat-message.bot.clickable:hover {
+    background-color: #b2ebf2;
+  }
+  
