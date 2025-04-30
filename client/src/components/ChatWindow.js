@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import './ChatWindow.css';
 import user from './assets/user.png';
-import logo from './assets/logo.png';
 
 const BOT_WELCOME_MESSAGES = [
   { 
@@ -35,11 +33,10 @@ function ChatWindow({ session, updateSession }) {
   // Initialize conversation with welcome messages
   useEffect(() => {
     if (session.messages.length === 1 && session.messages[0].sender === 'bot') {
-      // Add BOT_WELCOME_MESSAGES when starting a new session
       const updatedSession = {
         ...session,
         messages: [...session.messages, ...BOT_WELCOME_MESSAGES],
-        id: Date.now() // Add unique ID if not present
+        id: Date.now()
       };
       updateSession(updatedSession.messages);
     }
@@ -48,14 +45,13 @@ function ChatWindow({ session, updateSession }) {
   const handleSend = async (messageText = null, sector = null) => {
     const textToSend = messageText || input;
     if (!textToSend.trim()) return;
-
+  
     const newSector = sector || currentSector;
-    if (sector) {
-      setCurrentSector(sector);
-    }
-
-    const userMessage = { 
-      text: textToSend, 
+    if (sector) setCurrentSector(sector);
+  
+    const sessionId = session.id || Date.now();
+    const userMessage = {
+      text: textToSend,
       sender: 'user',
       sector: newSector
     };
@@ -63,24 +59,26 @@ function ChatWindow({ session, updateSession }) {
     updateSession(updatedMessages);
     setInput('');
     setIsLoading(true);
-
+  
     try {
-      const res = await axios.post('http://localhost:5000/api/chat', {
-        message: textToSend,
-        sector: newSector,
-        session_id: session.id || Date.now() // Fallback to timestamp if no ID
+      const response = await fetch("http://localhost:8000/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: textToSend,
+          user_id: sessionId  // Optional: for session tracking if needed in DB
+        })
       });
-
-      const botMessage = { 
-        text: res.data.reply, 
-        sender: 'bot',
-        sector: res.data.sector || newSector
+  
+      const data = await response.json();
+      const botReply = data.response || "Sorry, I didn't catch that.";
+  
+      const botMessage = {
+        text: botReply,
+        sender: "bot",
+        sector: newSector
       };
-
-      if (res.data.sector) {
-        setCurrentSector(res.data.sector);
-      }
-
+  
       updateSession([...updatedMessages, botMessage]);
     } catch (error) {
       console.error('Chat error:', error);
@@ -93,6 +91,7 @@ function ChatWindow({ session, updateSession }) {
       setIsLoading(false);
     }
   };
+  
 
   const handleBotMessageClick = (msg) => {
     if (msg.sender === 'bot' && msg.sector) {
@@ -103,16 +102,13 @@ function ChatWindow({ session, updateSession }) {
   return (
     <div className="chat-wrapper">
       <div className="chat-header">
-        {/* <div className="avatar1"> */}
-          <img className="avatar1" src={user} alt="avatar1" />
-        {/* </div> */}
+        <img className="avatar1" src={user} alt="avatar1" />
         <div>
           <div className="agent-name">EduGenie</div>
           <div className="status">
             {currentSector ? `Discussing: ${formatSectorName(currentSector)}` : 'We are online!'}
           </div>
         </div>
-        <div><img className="logo" src={logo} alt="logo1" /></div>
       </div>
 
       <div className="chat-box">
@@ -149,7 +145,6 @@ function ChatWindow({ session, updateSession }) {
   );
 }
 
-// Helper function to format sector names for display
 function formatSectorName(sector) {
   return sector
     .split('_')
