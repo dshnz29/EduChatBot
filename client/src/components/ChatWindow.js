@@ -3,10 +3,10 @@ import './ChatWindow.css';
 import user from './assets/user.png';
 
 const BOT_WELCOME_MESSAGES = [
-  { text: "Welcome! Let's find the right career path for you. 🌟", sender: "bot", sector: "career_guidance" },
+  { text: "Welcome! Let's find the right career paths. 🌟", sender: "bot", sector: "career_guidance" },
   { text: "Discover fields like IT, Business, and Engineering! 🚀", sender: "bot", sector: "explore_fields" },
-  { text: "Explore job opportunities that match your passions. 💼", sender: "bot", sector: "job_matching" },
-  { text: "Share your interests, and I'll suggest careers! 🎯", sender: "bot", sector: "interest_matching" }
+  { text: "Explore job opportunities that match my passions. 💼", sender: "bot", sector: "job_matching" },
+  { text: "I'll Interests, and suggest careers! 🎯", sender: "bot", sector: "interest_matching" }
 ];
 
 function ChatWindow({ session, updateSession }) {

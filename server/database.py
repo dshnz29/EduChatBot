@@ -45,7 +45,7 @@ def get_random_thank_you_message():
     cursor = conn.cursor()
     
     # Fetch a random thank you message from the thank_you_greetings table
-    cursor.execute("SELECT message FROM thank_you_greetings ORDER BY RAND() LIMIT 1")
+    cursor.execute("SELECT message FROM thank_you ORDER BY RAND() LIMIT 1")
     result = cursor.fetchone()
     
     cursor.close()
