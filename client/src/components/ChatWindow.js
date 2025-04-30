@@ -1,34 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './ChatWindow.css';
 import user from './assets/user.png';
 
 const BOT_WELCOME_MESSAGES = [
-  { 
-    text: "Welcome! Let's find the right career path for you. 🌟", 
-    sender: "bot",
-    sector: "career_guidance" 
-  },
-  { 
-    text: "Discover fields like IT, Business, and Engineering! 🚀", 
-    sender: "bot",
-    sector: "explore_fields" 
-  },
-  { 
-    text: "Explore job opportunities that match your passions. 💼", 
-    sender: "bot",
-    sector: "job_matching" 
-  },
-  { 
-    text: "Share your interests, and I'll suggest careers! 🎯", 
-    sender: "bot",
-    sector: "interest_matching" 
-  }
+  { text: "Welcome! Let's find the right career path for you. 🌟", sender: "bot", sector: "career_guidance" },
+  { text: "Discover fields like IT, Business, and Engineering! 🚀", sender: "bot", sector: "explore_fields" },
+  { text: "Explore job opportunities that match your passions. 💼", sender: "bot", sector: "job_matching" },
+  { text: "Share your interests, and I'll suggest careers! 🎯", sender: "bot", sector: "interest_matching" }
 ];
 
 function ChatWindow({ session, updateSession }) {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [currentSector, setCurrentSector] = useState(null);
+  const bottomRef = useRef(null);
+
+  // Scroll to bottom when messages change
+  useEffect(() => {
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [session.messages]);
 
   // Initialize conversation with welcome messages
   useEffect(() => {
@@ -45,40 +37,28 @@ function ChatWindow({ session, updateSession }) {
   const handleSend = async (messageText = null, sector = null) => {
     const textToSend = messageText || input;
     if (!textToSend.trim()) return;
-  
+
     const newSector = sector || currentSector;
     if (sector) setCurrentSector(sector);
-  
+
     const sessionId = session.id || Date.now();
-    const userMessage = {
-      text: textToSend,
-      sender: 'user',
-      sector: newSector
-    };
+    const userMessage = { text: textToSend, sender: 'user', sector: newSector };
     const updatedMessages = [...session.messages, userMessage];
     updateSession(updatedMessages);
     setInput('');
     setIsLoading(true);
-  
+
     try {
       const response = await fetch("http://localhost:8000/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          message: textToSend,
-          user_id: sessionId  // Optional: for session tracking if needed in DB
-        })
+        body: JSON.stringify({ message: textToSend, user_id: sessionId, sector: newSector })
       });
-  
+
       const data = await response.json();
       const botReply = data.response || "Sorry, I didn't catch that.";
-  
-      const botMessage = {
-        text: botReply,
-        sender: "bot",
-        sector: newSector
-      };
-  
+
+      const botMessage = { text: botReply, sender: "bot", sector: newSector };
       updateSession([...updatedMessages, botMessage]);
     } catch (error) {
       console.error('Chat error:', error);
@@ -91,7 +71,6 @@ function ChatWindow({ session, updateSession }) {
       setIsLoading(false);
     }
   };
-  
 
   const handleBotMessageClick = (msg) => {
     if (msg.sender === 'bot' && msg.sector) {
@@ -124,6 +103,7 @@ function ChatWindow({ session, updateSession }) {
             )}
           </div>
         ))}
+        <div ref={bottomRef}></div> {/* Auto-scroll target */}
       </div>
 
       <div className="chat-input">

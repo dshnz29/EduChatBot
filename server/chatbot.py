@@ -42,11 +42,10 @@ conversation = ConversationChain(
     verbose=True,
 )
 
-
-def get_bot_response(user_input: str) -> str:
-    save_message("user", user_input)  # Log user message
+def get_bot_response(user_input: str, user_id=None) -> str:
+    save_message("user", user_input, user_id=user_id)
     
     response = conversation.predict(input=user_input).strip()
     
-    save_message("bot", response)  # Log bot response
+    save_message("bot", response, user_id=user_id)
     return response

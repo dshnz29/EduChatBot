@@ -19,8 +19,10 @@ app.add_middleware(
 async def chat(request: Request):
     data = await request.json()
     user_input = data.get("message", "")
+    user_id = data.get("user_id")
+
     try:
-        response = get_bot_response(user_input)
+        response = get_bot_response(user_input, user_id=user_id)
         return {"response": response}
     except Exception as e:
         return {"response": f"An error occurred: {str(e)}"}

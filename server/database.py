@@ -14,11 +14,11 @@ def get_connection():
         database=os.getenv("DB_NAME")
     )
 
-def save_message(role, message):
+def save_message(role, message, user_id=None, sector=None):
     conn = get_connection()
     cursor = conn.cursor()
-    query = "INSERT INTO messages (role, message) VALUES (%s, %s)"
-    cursor.execute(query, (role, message))
+    query = "INSERT INTO messages (role, message, user_id) VALUES (%s, %s, %s)"
+    cursor.execute(query, (role, message, user_id))
     conn.commit()
     cursor.close()
     conn.close()
