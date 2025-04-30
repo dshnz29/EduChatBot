@@ -18,7 +18,7 @@
 }
 
 .chat-header {
-  background: linear-gradient(135deg, #006aff, #00c6ff);
+  background: linear-gradient(135deg, #2D006D, #4808a2, #2D006D);
   color: white;
   padding: 16px;
   display: flex;
@@ -74,7 +74,7 @@
 }
 
 .chat-message.user {
-  background-color: #006aff;
+  background-color: #2D006D;
   color: white;
   align-self: flex-end;
 }
@@ -83,8 +83,7 @@
   display: flex;
   padding: 10px;
   /* border-top: 1px solid #ddd; */
-  background: linear-gradient(135deg,#00c6ff, #006aff );
-}
+  background: linear-gradient(135deg, #2D006D, #4808a2, #2D006D);}
 
 .chat-input input {
   flex: 1;
@@ -118,7 +117,7 @@
   left: 20px;
   padding: 8px 12px;
   font-size: 14px;
-  background-color: #006aff;
+  background-color: #160027;
   color: white;
   border: none;
   border-radius: 8px;

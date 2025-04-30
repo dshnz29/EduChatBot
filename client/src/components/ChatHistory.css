@@ -1,7 +1,7 @@
 /* Dark Theme for Chat History */
 .chat-history {
   width: 220px;
-  background-color: #2c2f38; /* Dark background */
+  background-color: #2D006D; /* Dark background */
   border-right: 1px solid #444; /* Lighter border for contrast */
   padding: 10px;
   display: flex;
@@ -30,7 +30,7 @@
 
 /* Active History Item */
 .history-item.active {
-  background-color: #006aff; /* Bright blue for active item */
+  background-color: #160027; /* Bright blue for active item */
   color: white;
 }
 
