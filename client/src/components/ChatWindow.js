@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './ChatWindow.css';
+import user from './assets/user.png';
+import logo from './assets/logo.png';
 
 const BOT_WELCOME_MESSAGES = [
   { 
@@ -101,13 +103,16 @@ function ChatWindow({ session, updateSession }) {
   return (
     <div className="chat-wrapper">
       <div className="chat-header">
-        <div className="avatar1"></div>
+        {/* <div className="avatar1"> */}
+          <img className="avatar1" src={user} alt="avatar1" />
+        {/* </div> */}
         <div>
           <div className="agent-name">EduGenie</div>
           <div className="status">
             {currentSector ? `Discussing: ${formatSectorName(currentSector)}` : 'We are online!'}
           </div>
         </div>
+        <div><img className="logo" src={logo} alt="logo1" /></div>
       </div>
 
       <div className="chat-box">

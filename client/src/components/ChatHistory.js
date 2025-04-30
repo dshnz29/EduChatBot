@@ -11,6 +11,14 @@ function ChatHistory({ sessions, onSelect, activeSession }) {
   return (
     <div className="chat-history">
       <div className="history-header">My Chats</div>
+      {/* <div className="search-bar">
+        <input
+        type="text"
+        placeholder="Search chats..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div> */}
       {sessions.map((session, index) => (
         <div
           key={index}

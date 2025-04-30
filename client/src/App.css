@@ -48,12 +48,16 @@
 .chat-box {
   flex-grow: 1;
   background-color: #f7f9fc;
+  background-image: url(./asset/Backs.jpg);
+  background-size: cover;  /* Make the image cover the container */
+  background-position: center;  /* Center the image */
   padding: 16px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   overflow-y: auto;
 }
+
 
 .chat-message {
   max-width: 80%;
@@ -64,7 +68,7 @@
 }
 
 .chat-message.bot {
-  background-color: #ffffff;
+  background-color: #636363;
   align-self: flex-start;
   border: 1px solid #e0e0e0;
 }
