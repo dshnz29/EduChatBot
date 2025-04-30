@@ -15,7 +15,7 @@ html, body {
     flex-direction: column;
     height: 100vh;
     width: 100vw;
-    background-color: #c52424;
+    /* background-color: #cec3c3; */
     color: #200202;
   }
   
@@ -98,7 +98,7 @@ html, body {
   
   .chat-input {
     display: flex;
-    background-color: #2c2c2c;
+    /* background-color: #2c2c2c; */
     border-top: 1px solid #444;
     padding: 10px;
   }
@@ -135,6 +135,6 @@ html, body {
   }
   
   .chat-input button:hover:not(:disabled) {
-    background-color: #1177bb;
+    background-color: #5900ff;
   }
   

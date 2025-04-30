@@ -82,8 +82,8 @@
 .chat-input {
   display: flex;
   padding: 10px;
-  border-top: 1px solid #ddd;
-  background: #fff;
+  /* border-top: 1px solid #ddd; */
+  background: linear-gradient(135deg,#00c6ff, #006aff );
 }
 
 .chat-input input {
@@ -96,7 +96,7 @@
 }
 
 .chat-input button {
-  background: #006aff;
+  background: #38393a;
   border: none;
   color: white;
   margin-left: 8px;
